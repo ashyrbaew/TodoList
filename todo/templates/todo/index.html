@@ -1,9 +1,0 @@
-{% if ItemList %}
-    <ul>
-    {% for items in ItemList %}
-        <li><a href="/todo/{{items.id}}">{{ items.item }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No todo lists are available.</p>
-{% endif %}
