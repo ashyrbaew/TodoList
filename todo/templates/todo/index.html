@@ -36,9 +36,9 @@
                     <ul>
                     {% for items in ItemList %}
                         {% if items.visible == False %}
-                            <li class='hidden'>{{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">undo</a></li>
+                            <li class='hidden'><span>{{ items.pub_date }}</span> - {{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">undo</a></li>
                         {% else %}
-                            <li class='active'>{{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">Complete</a></li>
+                            <li class='active'><span>{{ items.pub_date }}</span> - {{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">Complete</a></li>
                         {% endif %}
                     {% endfor %}
                     </ul>
