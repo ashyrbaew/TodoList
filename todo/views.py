@@ -4,24 +4,40 @@ from .models import TodoList
 from .forms import AddItemForm
 
 def Index(request):
-    ItemList = get_list_or_404(TodoList, visible=True)
+    ItemList = get_list_or_404(TodoList)
     form = AddItemForm(request.POST or None)
-
     if form.is_valid():
         form.save()
         form = AddItemForm()
         return redirect('/todo')
     content = {
+        'ItemList': ItemList,
         'form':form,
-        'ItemList': ItemList
     }
-
     return render(request, 'todo/index.html', content)
+
+
+# def addnew(request):
+#     form = AddItemForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         form = AddItemForm()
+#         return redirect('/todo')
+#     content = {
+#         'form':form,
+#     }
+#     return render(request, 'todo/form.html', content)
 
 
 def Visiblity(request, item_id):
     item = TodoList.objects.get( pk=item_id )
-    item.visible = False
-    item.save()
-    response = redirect('/todo')
-    return response
+    if item.visible == False:
+        item.visible = True
+        item.save()
+        response = redirect('/todo')
+        return response
+    else:
+        item.visible = False
+        item.save()
+        response = redirect('/todo')
+        return response
