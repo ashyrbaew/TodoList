@@ -34,10 +34,8 @@ def Visiblity(request, item_id):
     if item.visible == False:
         item.visible = True
         item.save()
-        response = redirect('/todo')
-        return response
+        return redirect('/todo')
     else:
         item.visible = False
         item.save()
-        response = redirect('/todo')
-        return response
+        return redirect('/todo')
