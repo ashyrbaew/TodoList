@@ -46,8 +46,9 @@ def Login(request):
 		if user is not None: 
 			form = login(request, user) 
 			messages.success(request, f' wecome {username} !!') 
-			return redirect('index') 
+			# return redirect('index')
+			return redirect('/todo') 
 		else: 
 			messages.info(request, f'account done not exit plz sign in') 
 	form = AuthenticationForm() 
-	return render(request, 'user/login.html', {'form':form, 'title':'log in'}) 
+	return render(request, 'user/login.html', {'form':form, 'title':'log in'})

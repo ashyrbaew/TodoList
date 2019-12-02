@@ -25,18 +25,22 @@
 
                 {% block content %}
 
-                    <form method="POST"> {% csrf_token %}
+                    <form method="POST" enctype="multipart/form-data"> 
+                        {% csrf_token %}
                         {{ form.as_table }}
                         <input type="submit" value="save" ></input>
                     </form>
-            
+
                 {% endblock %}
             
                 {% if ItemList %}
                     <ul>
                     {% for items in ItemList %}
                         {% if items.visible == False %}
-                            <li class='hidden'><span>{{ items.pub_date }}</span> - {{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">undo</a></li>
+                            <li class='hidden'><span>{{ items.pub_date }}</span> - {{ items.item }} 
+                                <a href="{% url 'todo:visiblity' items.id %}">undo</a>
+                                <img src="{% url 'todo:index' ItemList.cover %}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                            </li>
                         {% else %}
                             <li class='active'><span>{{ items.pub_date }}</span> - {{ items.item }} <a href="{% url 'todo:visiblity' items.id %}">Complete</a></li>
                         {% endif %}

@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/todo/static/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/todo/media/'
 
 LOGIN_REDIRECT_URL = 'index'
 
