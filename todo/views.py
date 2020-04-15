@@ -23,12 +23,16 @@ def Index(request):
         return redirect('/login')
 
 def Visiblity(request, item_id):
-    item = TodoList.objects.get( pk=item_id )
-    if item.visible == False:
-        item.visible = True
-        item.save()
-        return redirect('/todo')
+    if request.user.is_authenticated:
+        item = TodoList.objects.get( pk=item_id )
+        if item.visible == False:
+            item.visible = True
+            item.save()
+            return redirect('/todo')
+        else:
+            item.visible = False
+            item.save()
+            return redirect('/todo')
     else:
-        item.visible = False
-        item.save()
+        return redirect('/login')
         

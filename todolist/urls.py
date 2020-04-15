@@ -20,10 +20,13 @@ from todo import views
 from user import views as user_view 
 from django.contrib.auth import views as auth 
 
+from emailconf import views 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('todo/', include('todo.urls')),
+    path('emailconf/', include('emailconf.urls')),
     
     path('', include('user.urls')), 
     path('login/', user_view.Login, name ='login'), 
